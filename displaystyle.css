@@ -1,0 +1,156 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d4a5a5; 
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.display-container {
+    background-color: #ffffff; 
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    width: 90%;
+    max-width: 800px; 
+}
+
+.display-container h1 {
+    color: #333;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+
+.display-flex {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 30px; 
+}
+
+.display-left,
+.display-right {
+    flex: 1; 
+    min-width: 300px; 
+}
+
+#displayInfo {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.main-row {
+    display: flex;
+    justify-content: space-between; 
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.main-row:last-child {
+    border-bottom: none;
+}
+
+.main-label {
+    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
+}
+
+.main-value {
+    color: #333;
+    font-weight: 500;
+}
+
+.gross-row {
+    margin-top: 15px;
+    padding: 10px 0;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #00609a; 
+    border-top: 2px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.deductions-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #cc0000; 
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.deduction-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    color: #555;
+}
+
+.deduction-row span:first-child {
+    font-weight: normal;
+}
+
+.deduction-row span:last-child {
+    font-weight: bold;
+    color: #333;
+}
+
+.total-deduction-row {
+    margin-top: 10px;
+    padding: 10px 0;
+    border-top: 1px solid #ccc;
+    font-weight: bold;
+    color: #cc0000; 
+}
+
+.total-deduction-row span:last-child {
+    font-weight: bolder;
+}
+
+.net-row {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #d6c2c2; 
+    border-radius: 5px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #8d2323; 
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #d4a5a5;
+}
+
+.net-row span:last-child {
+    font-size: 1.5em; 
+}
+
+@media (max-width: 650px) {
+    body {
+        padding: 10px;
+    }
+
+    .display-container {
+        padding: 20px;
+        box-shadow: none; 
+    }
+
+    .display-flex {
+        flex-direction: column; 
+        gap: 20px;
+    }
+
+    .display-left,
+    .display-right {
+        min-width: 100%; 
+    }
+}

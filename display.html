@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="displaystyle.css">
+
+    <title>Display</title>
+</head>
+<body>
+    
+    <div class="display-container">
+        <h1 style="text-align: center;">PAYROLL PROGRAM</h1>
+        <div class="display-flex">
+            <div class="display-left">
+                <div id="displayInfo"></div>
+            </div>
+            <div class="display-right">
+                <div class="deductions-title">DEDUCTIONS</div>
+                <div class="deduction-row"><span>SSS(5%):</span> <span id="sss"></span></div>
+                <div class="deduction-row"><span>PAG-IBIG(3%):</span> <span id="pagibig"></span></div>
+                <div class="deduction-row"><span>PHILHEALTH(2%):</span> <span id="philhealth"></span></div>
+                <div class="deduction-row"><span>TAX(5%):</span> <span id="tax"></span></div>
+                <div class="deduction-row total-deduction-row"><span>TOTAL DEDUCTION:</span> <span id="totalDeductions"></span></div>
+                <div class="net-row"><span>NET PAY:</span> <span id="netPay"></span></div>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <script>
+        window.onload = function() {
+            var idNumber = sessionStorage.getItem("idNumber");
+            var lastName = sessionStorage.getItem("lastName");
+            var firstName = sessionStorage.getItem("firstName");
+            var middleName = sessionStorage.getItem("middleName");
+            var position = sessionStorage.getItem("position");
+            var ratePerDay = sessionStorage.getItem("ratePerDay");
+            var workDays = sessionStorage.getItem("workDays");
+            var grossPay = parseFloat(sessionStorage.getItem("grossPay"));
+            var sss = grossPay * 0.05;
+            var pagibig = grossPay * 0.03;
+            var philhealth = grossPay * 0.02;   
+            var tax = grossPay * 0.05;
+            var totalDeductions = sss + pagibig + philhealth + tax;
+            var netPay = grossPay - totalDeductions;
+
+            document.getElementById("displayInfo").innerHTML =
+                '<div class="main-row"><span class="main-label">ID:</span> <span class="main-value">' + idNumber + '</span></div>' +
+                '<div class="main-row"><span class="main-label">NAME:</span> <span class="main-value">' + lastName + ', ' + firstName + ' ' + middleName + '</span></div>' +
+                '<div class="main-row"><span class="main-label">POSITION:</span> <span class="main-value">' + position + '</span></div>' +
+                '<div class="main-row"><span class="main-label">RATE:</span> <span class="main-value">' + ratePerDay + '</span></div>' +
+                '<div class="main-row"><span class="main-label">DAYS:</span> <span class="main-value">' + workDays + '</span></div>' +
+                '<div class="gross-row"><span class="main-label">GROSS PAY:</span> <span class="main-value">' + grossPay.toFixed(2) + '</span></div>';
+
+            document.getElementById("sss").textContent = sss.toFixed(2);
+            document.getElementById("pagibig").textContent = pagibig.toFixed(2);
+            document.getElementById("philhealth").textContent = philhealth.toFixed(2);
+            document.getElementById("tax").textContent = tax.toFixed(2);
+            document.getElementById("totalDeductions").textContent = totalDeductions.toFixed(2);
+            document.getElementById("netPay").textContent = netPay.toFixed(2);
+        }
+    </script>
+</body>
+</html>

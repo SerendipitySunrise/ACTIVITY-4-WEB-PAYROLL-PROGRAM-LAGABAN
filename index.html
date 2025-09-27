@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Web Payroll Program</title>
+</head>
+<body style="text-align: center;" bgcolor="#ADD8E6">
+    <h1>GRC PAYROLL PROGRAM</h1>
+    <form onsubmit="computePayroll(event)">
+        <div class="information">
+            <div class="form-row">
+                 <label for="idNumber">ID NUMBER:</label>
+                 <input type="text" id="idNumber" name="idNumber" pattern="[0-9-]+" title="Only numbers and '-' are allowed" required>
+            </div>
+            <div class="form-row">
+                <label for="lastName">LAST NAME:</label>
+                <input type="text" id="lastName" name="lastName" pattern="[A-Za-z]+" title="Only letters are allowed" required>
+            </div>
+            <div class="form-row">
+                <label for="firstName">FIRST NAME:</label>
+                <input type="text" id="firstName" name="firstName" pattern="[A-Za-z]+" title="Only letters are allowed" required>
+            </div>
+            <div class="form-row">
+                <label for="middleName">MIDDLE NAME:</label>
+                <input type="text" id="middleName" name="middleName" pattern="[A-Za-z]+" title="Only letters are allowed">
+            </div>
+            <div class="form-row">
+                <label for="position">POSITION:</label>
+                <input type="text" id="position" name="position" pattern="[A-Za-z ]+" title="Only letters are allowed" required>
+            </div>
+            <div class="form-row">
+                <label for="ratePerDay">RATE:</label>
+                <input type="number" id="ratePerDay" name="ratePerDay" required>
+            </div>
+            <div class="form-row">
+                <label for="workDays">WORK DAYS:</label>
+                <input type="number" id="workDays" name="workDays" min="1" max="31" required>
+            </div>
+            <div class="form-submit">
+                <button type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var idInput = document.getElementById('idNumber');
+                idInput.addEventListener('input', function(e) {
+                    this.value = this.value.replace(/[^0-9-]/g, '');
+                });
+            });
+        function computePayroll(event) {
+            event.preventDefault();
+            var idNumber = document.getElementById("idNumber").value;
+            var lastName = document.getElementById("lastName").value;
+            var firstName = document.getElementById("firstName").value;
+            function capitalize(str) {
+                return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+            }
+            lastName = capitalize(lastName);
+            firstName = capitalize(firstName);
+            var middleName = document.getElementById("middleName").value;
+            var middleInitial = middleName ? middleName.charAt(0).toUpperCase() + "." : "";
+            var position = document.getElementById("position").value;
+            var ratePerDay = document.getElementById("ratePerDay").value;
+            var workDays = document.getElementById("workDays").value;
+            var grossPay = parseFloat(ratePerDay) * parseFloat(workDays);
+
+            sessionStorage.setItem("idNumber", idNumber);
+            sessionStorage.setItem("lastName", lastName);
+            sessionStorage.setItem("firstName", firstName);
+            sessionStorage.setItem("middleName", middleInitial);
+            sessionStorage.setItem("position", position);
+            sessionStorage.setItem("ratePerDay", ratePerDay);
+            sessionStorage.setItem("workDays", workDays);
+            sessionStorage.setItem("grossPay", grossPay);
+
+            location.href = "display.html";
+        }
+    </script>
+</body>
+</html>
